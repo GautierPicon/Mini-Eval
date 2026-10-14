@@ -1,0 +1,17 @@
+[project]
+name = "mini-llm-eval"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "GautierPicon", email = "bt2ay5d9@anonaddy.com" }
+]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+mini-llm-eval = "mini_llm_eval:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
