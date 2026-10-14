@@ -77,11 +77,3 @@ Runs are never overwritten. `report` uses the latest run of each model and suite
 ## Tests
 
 `uv run pytest` runs the adapter against hand computations, inside the real `lm-eval` harness on a tiny local task, and the registry, runner and report logic. These tests use fake models and need no network. `tests/test_native.py` is skipped unless PyTorch and the training package are installed.
-
-## Not verified yet
-
-The adapter and the pipeline were tested with fake models and with a real
-`mini-llm-34M-12000steps` checkpoint on the `smoke` suite, plus `mini-eval check`
-(batch invariance, device agreement, untrained control) and `report`.
-Not yet run: the full `small_lm` suite, the Hugging Face references, and the
-reports on real data. Do the reproduction check from [PROTOCOL.md](PROTOCOL.md) first.
