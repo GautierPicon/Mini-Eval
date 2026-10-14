@@ -1,4 +1,4 @@
-# mini-eval
+# Mini-Eval
 
 Evaluation of [mini-llm](../mini-llm) models against reference models (Pythia, ...) with [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness). This repository is separate from the training repository on purpose: it only asks the models for probabilities, and `lm-eval` computes the scores.
 
