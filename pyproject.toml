@@ -7,11 +7,34 @@ authors = [
     { name = "GautierPicon", email = "bt2ay5d9@anonaddy.com" }
 ]
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "accelerate>=0.26.0",
+    "lm-eval==0.4.13",
+    "matplotlib>=3.8",
+    "mini-llm",
+    "numpy>=2.0",
+    "pyyaml>=6.0",
+    "tokenizers>=0.23.3",
+    "torch>=2.14.1",
+    "tqdm>=4.66",
+    "transformers>=4.40",
+]
 
 [project.scripts]
-mini-llm-eval = "mini_llm_eval:main"
+mini-eval = "mini_llm_eval.cli:main"
+mini-llm-eval = "mini_llm_eval.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.12.23,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv.sources]
+mini-llm = { path = "../mini-llm", editable = true }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
