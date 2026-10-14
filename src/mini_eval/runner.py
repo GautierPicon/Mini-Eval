@@ -10,8 +10,8 @@ from pathlib import Path
 from lm_eval import simple_evaluate
 from lm_eval.utils import handle_non_serializable
 
-from mini_llm_eval import PROTOCOL_VERSION
-from mini_llm_eval.registry import RESULTS_DIR, ROOT, verify_native
+from mini_eval import PROTOCOL_VERSION
+from mini_eval.registry import RESULTS_DIR, ROOT, verify_native
 
 
 def git_state(path):
@@ -43,7 +43,7 @@ def build_target(model, device, batch_size, allow_unpinned):
     if model.kind == "hf":
         args = f"pretrained={model.pretrained},revision={model.revision},dtype=float32"
         return {"model": "hf", "model_args": args}, {}
-    from mini_llm_eval.backend import NativeLM
+    from mini_eval.backend import NativeLM
 
     checkpoint, fingerprints = verify_native(model, allow_unpinned)
     info = {**fingerprints, "checkpoint": model.checkpoint}
@@ -103,7 +103,7 @@ def run_suite(
         "platform": platform.platform(),
         "torch": package_version("torch"),
         "transformers": package_version("transformers"),
-        "mini_llm_eval": repo,
+        "mini_eval": repo,
         "mini_llm": training_package_info(),
         "date": datetime.now().isoformat(timespec="seconds"),
         "duration_seconds": round(time.time() - started, 1),

@@ -1,4 +1,4 @@
-# mini-llm-eval
+# mini-eval
 
 Evaluation of [mini-llm](../mini-llm) models against reference models (Pythia, ...) with [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness). This repository is separate from the training repository on purpose: it only asks the models for probabilities, and `lm-eval` computes the scores.
 
@@ -53,7 +53,7 @@ Useful options for `run`: `--device cpu|mps|cuda`, `--limit N` (smoke tests only
 
 ## How native models are evaluated
 
-`src/mini_llm_eval/backend.py` implements the `lm-eval` model interface on top of your checkpoints: no export and no `config.json` are needed. Context and continuation are encoded with the same rules as the Hugging Face backend of `lm-eval` (trailing spaces move to the continuation, an empty context starts with the end-of-text token, long inputs are truncated on the left, long texts use disjoint rolling windows), so scores are computed the same way for references and for your models.
+`src/mini_eval/backend.py` implements the `lm-eval` model interface on top of your checkpoints: no export and no `config.json` are needed. Context and continuation are encoded with the same rules as the Hugging Face backend of `lm-eval` (trailing spaces move to the continuation, an empty context starts with the end-of-text token, long inputs are truncated on the left, long texts use disjoint rolling windows), so scores are computed the same way for references and for your models.
 
 What it relies on from the training repository:
 

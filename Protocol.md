@@ -1,6 +1,6 @@
 # Evaluation protocol v1
 
-These choices are fixed so that every number in this repository is comparable with the others. Anything that changes a score changes the protocol version (`PROTOCOL_VERSION` in `src/mini_llm_eval/__init__.py`), and every model, references included, is then evaluated again.
+These choices are fixed so that every number in this repository is comparable with the others. Anything that changes a score changes the protocol version (`PROTOCOL_VERSION` in `src/mini_eval/__init__.py`), and every model, references included, is then evaluated again.
 
 ## Fixed settings
 

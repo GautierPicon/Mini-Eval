@@ -15,7 +15,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
-from mini_llm_eval.backend import ScoringLM, log_softmax
+from mini_eval.backend import ScoringLM, log_softmax
 
 
 def request(*args):
@@ -99,7 +99,7 @@ def test_rolling_and_generation_run(lm):
 
 
 def test_registry_loads_expected_models():
-    from mini_llm_eval.registry import load_registry, load_suite
+    from mini_eval.registry import load_registry, load_suite
 
     registry = load_registry()
     assert "pythia-70m-step143000" in registry
@@ -113,7 +113,7 @@ def test_registry_loads_expected_models():
 
 
 def test_verify_native_refuses_unpinned(tmp_path):
-    from mini_llm_eval.registry import Model, fingerprint, verify_native
+    from mini_eval.registry import Model, fingerprint, verify_native
 
     model = Model(
         name="x",
@@ -138,9 +138,9 @@ def test_verify_native_refuses_unpinned(tmp_path):
 def test_save_run_collect_and_report(tmp_path):
     import json
 
-    from mini_llm_eval.registry import Model, load_suite
-    from mini_llm_eval.report import collect, consistency_warnings, markdown_table
-    from mini_llm_eval.runner import save_run
+    from mini_eval.registry import Model, load_suite
+    from mini_eval.report import collect, consistency_warnings, markdown_table
+    from mini_eval.runner import save_run
 
     model = Model(
         name="fake",
@@ -165,7 +165,7 @@ def test_save_run_collect_and_report(tmp_path):
         "suite": {"num_fewshot": 0, "limit": 50},
         "device": "cpu",
         "lm_eval": "0.4.13",
-        "mini_llm_eval": {"commit": "abc", "dirty": False},
+        "mini_eval": {"commit": "abc", "dirty": False},
     }
     run_dir = tmp_path / "fake" / "smoke" / "20240101-000000"
     save_run(run_dir, dict(results), dict(meta))
@@ -177,3 +177,18 @@ def test_save_run_collect_and_report(tmp_path):
     assert any("limit" in w for w in warnings), warnings
     got = json.loads((run_dir / "results.json").read_text())
     assert "arc_easy" in got["results"]
+
+
+def test_consistency_warnings_accepts_legacy_meta_key():
+    from mini_eval.report import consistency_warnings
+
+    base = {
+        "lm_eval": "0.4.13",
+        "protocol": 1,
+        "suite": {"num_fewshot": 0, "limit": None},
+        "device": "cpu",
+    }
+    new = {"meta": {**base, "mini_eval": {"commit": "abc", "dirty": False}}}
+    legacy = {"meta": {**base, "mini_llm_eval": {"commit": "abc", "dirty": True}}}
+    assert consistency_warnings([new]) == []
+    assert any("working tree" in w for w in consistency_warnings([legacy]))

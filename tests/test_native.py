@@ -9,8 +9,8 @@ from mini_llm.config import Cfg
 from mini_llm.model import LLM
 from test_backend import PAIRS, encode_pair, request
 
-from mini_llm_eval.backend import NativeLM, log_softmax
-from mini_llm_eval.checks import check_batch_invariance
+from mini_eval.backend import NativeLM, log_softmax
+from mini_eval.checks import check_batch_invariance
 
 
 @pytest.fixture

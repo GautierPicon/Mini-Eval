@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 from lm_eval import simple_evaluate
 
-from mini_llm_eval.backend import NativeLM
-from mini_llm_eval.registry import verify_native
+from mini_eval.backend import NativeLM
+from mini_eval.registry import verify_native
 
 SENTENCES = [
     "The sky is blue and the grass is green.",

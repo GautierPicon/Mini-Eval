@@ -1,7 +1,7 @@
 import json
 from collections import defaultdict
 
-from mini_llm_eval.registry import REPORTS_DIR, RESULTS_DIR, SUITES_DIR, load_registry, load_suite
+from mini_eval.registry import REPORTS_DIR, RESULTS_DIR, SUITES_DIR, load_registry, load_suite
 
 
 def latest_runs(results_dir=RESULTS_DIR):
@@ -53,7 +53,7 @@ def consistency_warnings(rows):
         values = sorted({str(getter(r["meta"])) for r in rows})
         if len(values) > 1:
             warnings.append(f"Runs use different values of **{label}**: {', '.join(values)}.")
-    if any(r["meta"]["mini_llm_eval"].get("dirty") is not False for r in rows):
+    if any(r["meta"].get("mini_eval", r["meta"].get("mini_llm_eval", {})).get("dirty") is not False for r in rows):
         warnings.append("Some runs come from a modified or untracked working tree.")
     if any(r["meta"]["suite"]["limit"] for r in rows):
         warnings.append("Some runs use only the first examples of each benchmark (limit set).")

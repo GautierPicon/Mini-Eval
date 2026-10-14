@@ -1,7 +1,7 @@
 import argparse
 from dataclasses import replace
 
-from mini_llm_eval.registry import SUITES_DIR, fingerprint, load_registry, load_suite
+from mini_eval.registry import SUITES_DIR, fingerprint, load_registry, load_suite
 
 
 def cmd_list(args):
@@ -23,7 +23,7 @@ def cmd_fingerprint(args):
 
 
 def cmd_run(args):
-    from mini_llm_eval.runner import run_suite
+    from mini_eval.runner import run_suite
 
     registry = load_registry()
     names = list(registry) if args.all else args.models
@@ -40,7 +40,7 @@ def cmd_run(args):
 
 
 def cmd_check(args):
-    from mini_llm_eval.checks import run_checks
+    from mini_eval.checks import run_checks
 
     model = load_registry()[args.model]
     if model.kind != "native":
@@ -49,7 +49,7 @@ def cmd_check(args):
 
 
 def cmd_report(args):
-    from mini_llm_eval.report import build_report
+    from mini_eval.report import build_report
 
     print(f"saved -> {build_report(args.suite)}")
 
