@@ -1,0 +1,15 @@
+name: small_lm
+description: Zero-shot suite chosen to give signal on models under 1B parameters.
+num_fewshot: 0
+limit: null
+batch_size: 16
+tasks:
+  - {name: hellaswag, primary: acc_norm, chance: 0.25}
+  - {name: arc_easy, primary: acc_norm, chance: 0.25}
+  - {name: arc_challenge, primary: acc_norm, chance: 0.25}
+  - {name: piqa, primary: acc_norm, chance: 0.5}
+  - {name: winogrande, primary: acc, chance: 0.5}
+  - {name: openbookqa, primary: acc_norm, chance: 0.25}
+  - {name: sciq, primary: acc_norm, chance: 0.25}
+  - {name: lambada_openai, primary: acc, chance: 0.0}
+  - {name: wikitext, primary: bits_per_byte, chance: null}

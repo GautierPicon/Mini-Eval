@@ -1,0 +1,56 @@
+models:
+  - name: pythia-70m-step64
+    kind: hf
+    family: pythia-70m
+    pretrained: EleutherAI/pythia-70m
+    revision: step64
+    params: 70426624
+    non_embedding_params: 18915328
+    tokens_seen: 134217728
+
+  - name: pythia-70m-step128
+    kind: hf
+    family: pythia-70m
+    pretrained: EleutherAI/pythia-70m
+    revision: step128
+    params: 70426624
+    non_embedding_params: 18915328
+    tokens_seen: 268435456
+
+  - name: pythia-70m-step512
+    kind: hf
+    family: pythia-70m
+    pretrained: EleutherAI/pythia-70m
+    revision: step512
+    params: 70426624
+    non_embedding_params: 18915328
+    tokens_seen: 1073741824
+
+  - name: pythia-70m-step143000
+    kind: hf
+    family: pythia-70m
+    pretrained: EleutherAI/pythia-70m
+    revision: step143000
+    params: 70426624
+    non_embedding_params: 18915328
+    tokens_seen: 299892736000
+
+  - name: mini-llm-34M-6000steps
+    kind: native
+    family: mini-llm-34M
+    checkpoint: mini-llm-base-34M-6000steps.pt
+    sha256: 4cb08177a145054108ab8225fcafe7688579ac81e8d885a9367340e70b0e258b
+    tokenizer_sha256: d527f10c1f3ca5f7299c28c167b9804d65832ecf7ae64460351194523cd25181
+    params: 34087424
+    non_embedding_params: 25698816
+    tokens_seen: 98304000
+
+  - name: mini-llm-34M-12000steps
+    kind: native
+    family: mini-llm-34M
+    checkpoint: mini-llm-base-34M-12000steps.pt
+    sha256: 12201d5257cb62bf591ec5964d996ff7a470e0ad00a00959db917a824aa2d5d9
+    tokenizer_sha256: d527f10c1f3ca5f7299c28c167b9804d65832ecf7ae64460351194523cd25181
+    params: 34087424
+    non_embedding_params: 25698816
+    tokens_seen: 196608000

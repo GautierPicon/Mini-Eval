@@ -1,0 +1,9 @@
+name: smoke
+description: Quick check that the pipeline runs end to end. Never used for reported numbers.
+num_fewshot: 0
+limit: 50
+batch_size: 16
+tasks:
+  - {name: arc_easy, primary: acc_norm, chance: 0.25}
+  - {name: hellaswag, primary: acc_norm, chance: 0.25}
+  - {name: piqa, primary: acc_norm, chance: 0.5}
