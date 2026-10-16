@@ -54,3 +54,13 @@ models:
     params: 34087424
     non_embedding_params: 25698816
     tokens_seen: 196608000
+
+  - name: mini-llm-70M-22000steps
+    kind: native
+    family: mini-llm-70M
+    checkpoint: mini-llm-base-70M-22000steps.pt
+    sha256: 97d3fc38784a97502e2180285660698f5da08ea2a91486323fac77de1076d5fb
+    tokenizer_sha256: d527f10c1f3ca5f7299c28c167b9804d65832ecf7ae64460351194523cd25181
+    params: 69975680
+    non_embedding_params: 59489920
+    tokens_seen: 1441792000
