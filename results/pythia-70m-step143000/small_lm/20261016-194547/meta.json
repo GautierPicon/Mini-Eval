@@ -1,0 +1,88 @@
+{
+  "protocol": 1,
+  "model": {
+    "name": "pythia-70m-step143000",
+    "kind": "hf",
+    "family": "pythia-70m",
+    "params": 70426624,
+    "non_embedding_params": 18915328,
+    "tokens_seen": 299892736000,
+    "pretrained": "EleutherAI/pythia-70m",
+    "revision": "step143000",
+    "checkpoint": null,
+    "sha256": null,
+    "tokenizer_sha256": null
+  },
+  "suite": {
+    "name": "small_lm",
+    "description": "Zero-shot suite chosen to give signal on models under 1B parameters.",
+    "num_fewshot": 0,
+    "limit": null,
+    "batch_size": 16,
+    "tasks": [
+      {
+        "name": "hellaswag",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "arc_easy",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "arc_challenge",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "piqa",
+        "primary": "acc_norm",
+        "chance": 0.5
+      },
+      {
+        "name": "winogrande",
+        "primary": "acc",
+        "chance": 0.5
+      },
+      {
+        "name": "openbookqa",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "sciq",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "lambada_openai",
+        "primary": "acc",
+        "chance": 0.0
+      },
+      {
+        "name": "wikitext",
+        "primary": "bits_per_byte",
+        "chance": null
+      }
+    ]
+  },
+  "device": "cpu",
+  "fingerprint": {},
+  "lm_eval": "0.4.13",
+  "python": "3.11.15",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "torch": "2.14.1",
+  "transformers": "5.19.0",
+  "mini_eval": {
+    "commit": "9a511f983a491bb5a58463d39cb8a1121e7d8ceb",
+    "dirty": true
+  },
+  "mini_llm": {
+    "version": "0.1.0",
+    "commit": "9f08f7388b5b610cbd71bf9ad998438b10151f96",
+    "dirty": true
+  },
+  "date": "2026-10-16T19:45:47",
+  "duration_seconds": 1568.2
+}

@@ -1,0 +1,91 @@
+{
+  "protocol": 1,
+  "model": {
+    "name": "mini-llm-70M-22000steps",
+    "kind": "native",
+    "family": "mini-llm-70M",
+    "params": 69975680,
+    "non_embedding_params": 59489920,
+    "tokens_seen": 1441792000,
+    "pretrained": null,
+    "revision": null,
+    "checkpoint": "mini-llm-base-70M-22000steps.pt",
+    "sha256": "97d3fc38784a97502e2180285660698f5da08ea2a91486323fac77de1076d5fb",
+    "tokenizer_sha256": "d527f10c1f3ca5f7299c28c167b9804d65832ecf7ae64460351194523cd25181"
+  },
+  "suite": {
+    "name": "small_lm",
+    "description": "Zero-shot suite chosen to give signal on models under 1B parameters.",
+    "num_fewshot": 0,
+    "limit": null,
+    "batch_size": 16,
+    "tasks": [
+      {
+        "name": "hellaswag",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "arc_easy",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "arc_challenge",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "piqa",
+        "primary": "acc_norm",
+        "chance": 0.5
+      },
+      {
+        "name": "winogrande",
+        "primary": "acc",
+        "chance": 0.5
+      },
+      {
+        "name": "openbookqa",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "sciq",
+        "primary": "acc_norm",
+        "chance": 0.25
+      },
+      {
+        "name": "lambada_openai",
+        "primary": "acc",
+        "chance": 0.0
+      },
+      {
+        "name": "wikitext",
+        "primary": "bits_per_byte",
+        "chance": null
+      }
+    ]
+  },
+  "device": "cpu",
+  "fingerprint": {
+    "sha256": "97d3fc38784a97502e2180285660698f5da08ea2a91486323fac77de1076d5fb",
+    "tokenizer_sha256": "d527f10c1f3ca5f7299c28c167b9804d65832ecf7ae64460351194523cd25181"
+  },
+  "lm_eval": "0.4.13",
+  "python": "3.11.15",
+  "platform": "macOS-27.0.1-arm64-arm-64bit",
+  "torch": "2.14.1",
+  "transformers": "5.19.0",
+  "mini_eval": {
+    "commit": "9a511f983a491bb5a58463d39cb8a1121e7d8ceb",
+    "dirty": true
+  },
+  "mini_llm": {
+    "version": "0.1.0",
+    "commit": "9f08f7388b5b610cbd71bf9ad998438b10151f96",
+    "dirty": true
+  },
+  "date": "2026-10-16T19:19:38",
+  "duration_seconds": 1255.6
+}
