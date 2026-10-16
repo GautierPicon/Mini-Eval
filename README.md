@@ -36,13 +36,18 @@ uv run mini-eval report small_lm
 uv run pytest
 ```
 
+Regular workflow: `run` always rebuilds `reports/<suite>.md` plus the two plots
+(`<suite>_vs_tokens.png`, `<suite>_vs_params.png`) from the latest runs, so a
+benchmark never ends without images. Use `--no-report` to skip it, and `report`
+alone to rebuild from existing results.
+
 | Command                      | What it does                                                   |
 | ---------------------------- | -------------------------------------------------------------- |
 | `list`                       | Shows the registered models and suites                         |
 | `fingerprint MODEL`          | Prints the SHA-256 values to copy into `models.yaml`           |
 | `check MODEL [--device mps]` | Batch invariance, device agreement with cpu, untrained control |
-| `run SUITE MODEL... [--all]` | Evaluates models and saves each run in `results/`              |
-| `report SUITE`               | Builds `reports/<suite>.md` and the two plots                  |
+| `run SUITE MODEL... [--all]` | Evaluates models, saves each run in `results/`, rebuilds report + PNGs |
+| `report SUITE`               | Rebuilds `reports/<suite>.md` and the two plots from existing results |
 
 Useful options for `run`: `--device cpu|mps|cuda`, `--limit N` (smoke tests only), `--allow-unpinned` (models without a fingerprint, test runs only), `--require-clean` (refuses to run unless the working tree is committed).
 

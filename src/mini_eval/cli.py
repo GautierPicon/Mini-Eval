@@ -23,6 +23,7 @@ def cmd_fingerprint(args):
 
 
 def cmd_run(args):
+    from mini_eval.report import build_report
     from mini_eval.runner import run_suite
 
     registry = load_registry()
@@ -37,6 +38,8 @@ def cmd_run(args):
         print(f"== {name} on {suite.name} ==", flush=True)
         out = run_suite(registry[name], suite, args.device, args.allow_unpinned, args.require_clean)
         print(f"saved -> {out}")
+    if not args.no_report:
+        print(f"saved -> {build_report(suite.name)} (+ vs_tokens / vs_params PNGs)")
 
 
 def cmd_check(args):
@@ -72,6 +75,7 @@ def main():
     p.add_argument("--limit", type=int)
     p.add_argument("--allow-unpinned", action="store_true")
     p.add_argument("--require-clean", action="store_true")
+    p.add_argument("--no-report", action="store_true", help="Skip rebuilding the markdown report and PNG plots after the run.")
     p.set_defaults(func=cmd_run)
 
     p = sub.add_parser("check")

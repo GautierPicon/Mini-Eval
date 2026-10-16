@@ -192,3 +192,57 @@ def test_consistency_warnings_accepts_legacy_meta_key():
     legacy = {"meta": {**base, "mini_llm_eval": {"commit": "abc", "dirty": True}}}
     assert consistency_warnings([new]) == []
     assert any("working tree" in w for w in consistency_warnings([legacy]))
+
+
+def test_build_report_always_writes_markdown_and_plots(tmp_path):
+    from mini_eval.registry import Model, load_suite
+    from mini_eval.report import build_report
+    from mini_eval.runner import save_run
+
+    models = {
+        "fake-a": Model(
+            name="fake-a",
+            kind="native",
+            family="fake",
+            params=100,
+            non_embedding_params=80,
+            tokens_seen=1000,
+            checkpoint="m.pt",
+        ),
+        "fake-b": Model(
+            name="fake-b",
+            kind="native",
+            family="fake",
+            params=200,
+            non_embedding_params=160,
+            tokens_seen=2000,
+            checkpoint="m.pt",
+        ),
+    }
+    suite = load_suite("smoke")
+    for i, name in enumerate(models):
+        results = {
+            "results": {
+                t.name: {f"{t.primary},none": 0.5 + 0.05 * i, f"{t.primary}_stderr,none": 0.01}
+                for t in suite.tasks
+            },
+            "n-samples": {},
+            "samples": {t.name: [] for t in suite.tasks},
+        }
+        meta = {
+            "protocol": 1,
+            "model": {"name": name},
+            "suite": {"num_fewshot": 0, "limit": None},
+            "device": "cpu",
+            "lm_eval": "0.4.13",
+            "mini_eval": {"commit": "abc", "dirty": False},
+        }
+        save_run(tmp_path / "results" / name / "smoke" / f"20240101-00000{i}", dict(results), dict(meta))
+    out = build_report(
+        "smoke", results_dir=tmp_path / "results", reports_dir=tmp_path / "reports", registry=models
+    )
+    text = out.read_text()
+    assert "fake-a" in text and "fake-b" in text
+    for png in ("smoke_vs_tokens.png", "smoke_vs_params.png"):
+        assert (tmp_path / "reports" / png).exists(), png
+        assert png in text, png
