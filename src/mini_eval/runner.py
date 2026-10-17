@@ -19,7 +19,11 @@ def git_state(path):
         run = lambda *args: subprocess.run(
             ["git", "-C", str(path), *args], capture_output=True, text=True, check=True
         ).stdout.strip()
-        return {"commit": run("rev-parse", "HEAD"), "dirty": bool(run("status", "--porcelain"))}
+        # results/ and reports/ hold the outputs of the runs themselves: only the
+        # code under test counts for the clean-tree check (and for `dirty` in the
+        # recorded metadata).
+        status = run("status", "--porcelain", "--", ".", ":(exclude)results", ":(exclude)reports")
+        return {"commit": run("rev-parse", "HEAD"), "dirty": bool(status)}
     except Exception:
         return {"commit": None, "dirty": None}
 
