@@ -103,6 +103,13 @@ def test_registry_loads_expected_models():
 
     registry = load_registry()
     assert "pythia-70m-step143000" in registry
+    smol = registry["SmolLM2-135M"]
+    assert smol.kind == "hf"
+    assert smol.pretrained == "HuggingFaceTB/SmolLM2-135M"
+    assert smol.revision == "93efa2f097d58c2a74874c7e644dbc9b0cee75a2"
+    assert smol.params == 134_515_008
+    assert smol.non_embedding_params == 134_515_008 - 49_152 * 576
+    assert all(m.pretrained and m.revision for m in registry.values() if m.kind == "hf")
     natives = [m for m in registry.values() if m.kind == "native"]
     assert natives, "no native models registered"
     assert all(m.sha256 and m.tokenizer_sha256 for m in natives), "native models must be fingerprinted"

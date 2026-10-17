@@ -35,6 +35,15 @@ models:
     non_embedding_params: 18915328
     tokens_seen: 299892736000
 
+  - name: SmolLM2-135M
+    kind: hf
+    family: SmolLM2-135M
+    pretrained: HuggingFaceTB/SmolLM2-135M
+    revision: 93efa2f097d58c2a74874c7e644dbc9b0cee75a2
+    params: 134515008
+    non_embedding_params: 106203456
+    tokens_seen: 2000000000000
+
   - name: mini-llm-34M-12000steps
     kind: native
     family: mini-llm-34M

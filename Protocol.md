@@ -33,7 +33,7 @@ The primary metric of each task is declared in `suites/small_lm.yaml` before any
 
 ## Models
 
-- **References** are Hugging Face models pinned to a revision. Pythia publishes intermediate checkpoints (`step64`, `step128`, ...) at 2,097,152 tokens per step, which allows comparisons at an equal number of training tokens.
+- **References** are Hugging Face models pinned to a revision (`HuggingFaceTB/SmolLM2-135M` to `93efa2f0`, for example). Pythia publishes intermediate checkpoints (`step64`, `step128`, ...) at 2,097,152 tokens per step, which allows comparisons at an equal number of training tokens.
 - **Native models** are identified by the SHA-256 of the checkpoint and of `tok.json`, stored in `models.yaml`. A run is refused if the files on disk do not match.
 - Size is described by **non-embedding parameters** as well as total parameters, because embeddings are a very different share of the total from one model to another (about 73% for Pythia-70M).
 
