@@ -5,10 +5,10 @@ with [lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness
 This repository is separate from the training repository on purpose: it only asks the
 models for probabilities, and `lm-eval` computes the scores.
 
-**Full documentation: [../documentation/Mini-Eval](../documentation/Mini-Eval/README.md)**
+**Full documentation: [../Documentation/Mini-Eval](../Documentation/Mini-Eval/README.md)**
 
 The rules that make every number comparable are in [PROTOCOL.md](PROTOCOL.md) (also
-mirrored in the [documentation](../documentation/Mini-Eval/protocol.md)).
+mirrored in the [documentation](../Documentation/Mini-Eval/protocol.md)).
 
 ## Setup
 
@@ -36,4 +36,4 @@ uv run pytest
 `run` always rebuilds `reports/<suite>.md` plus the two plots from the latest runs.
 Tests use fake models and need no network. Everything else — command reference,
 adding a model, the native backend, results layout — lives in the
-[documentation](../documentation/Mini-Eval/README.md).
+[documentation](../Documentation/Mini-Eval/README.md).
